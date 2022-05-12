@@ -1,9 +1,11 @@
-"""
-Juego: Snake
-Programador 1: Rodrigo García Estrada
-Programador 2: Misael Chavez Ramos
+"""Snake, classic arcade game.
 
-Fecha: 10 / mayo / 2022
+Exercises
+
+1. How do you make the snake faster or slower?
+2. How can you make the snake go around the edges?
+3. How would you move the food?
+4. Change the snake to respond to mouse clicks.
 """
 
 from random import randrange
@@ -14,18 +16,6 @@ from freegames import square, vector
 food = vector(0, 0)
 snake = [vector(10, 0)]
 aim = vector(0, -10)
-
-
-cyan = '#00FFFF'
-ladrillo = '#FF4D00'
-rosa = '#FFB0D8'
-amarilo = '#FFDF00'
-morado = '#B700FF'
-botella = '#007974'
-
-randomcolor = [botella,cyan,ladrillo,rosa,amarilo,morado]
-snakecolor = randomcolor[randrange(0, 6)]
-foodcolor = randomcolor[randrange(0, 6)]
 
 
 def change(x, y):
@@ -39,12 +29,10 @@ def inside(head):
     return -200 < head.x < 190 and -200 < head.y < 190
 
 
-
 def move():
     """Move snake forward one segment."""
     head = snake[-1].copy()
     head.move(aim)
-
 
     if not inside(head) or head in snake:
         square(head.x, head.y, 9, 'red')
@@ -59,8 +47,6 @@ def move():
         food.y = randrange(-15, 15) * 10
     else:
         snake.pop(0)
-
-    #sumar a ta x de food 10 pixeles
 
     if (food.x == -150):
         if head != food:
@@ -123,10 +109,9 @@ def move():
     clear()
 
     for body in snake:
-        square(body.x, body.y, 9, snakecolor)
-    
+        square(body.x, body.y, 9, 'black')
 
-    square(food.x, food.y, 9, foodcolor)
+    square(food.x, food.y, 9, 'green')
     update()
     ontimer(move, 100)
 
