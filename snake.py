@@ -48,6 +48,7 @@ def move():
     else:
         snake.pop(0)
 
+    #Se mueve la comida 10 pixeles, en caso de estar cerca de una de las paredes no se movera hacia esa diraccion
     if (food.x == -150):
         if head != food:
             movefood = randrange(1, 40)
